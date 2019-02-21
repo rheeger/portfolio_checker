@@ -14,7 +14,7 @@ func GetPrice(hldg portfolio.Holding) float64 {
 	})
 
 	quotes, err := client.Cryptocurrency.LatestQuotes(&cmc.QuoteOptions{
-		Symbol:  hldg.BinanceTicker,
+		Symbol:  hldg.Ticker,
 		Convert: "USD",
 	})
 	if err != nil {

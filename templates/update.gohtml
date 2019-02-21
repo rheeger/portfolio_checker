@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Create Book</title>
+    <Title>Create Book</Title>
     <style>
         html, body {
             padding: 0;
@@ -28,10 +28,9 @@
 
 <h1>Update A Holding</h1>
 <form method="post" action="/portfolio/update/process">
-    <input type="text" name="isbn" placeholder="isbn" required autofocus value="{{.Isbn}}">
-    <input type="text" name="title" placeholder="title" required value="{{.Title}}">
-    <input type="text" name="author" placeholder="author" required value="{{.Author}}">
-    <input type="text" name="price" placeholder="price" required value="{{.Price}}">
+    <input type="text" name="Ticker" placeholder="Ticker" required autofocus value="{{.Ticker}}">
+    <input type="text" name="Name" placeholder="Name" required value="{{.Name}}">
+    <input type="text" name="Amount" placeholder="Amount" required value="{{.Amount}}">
     <input type="submit">
 </form>
 

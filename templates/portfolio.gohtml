@@ -28,7 +28,7 @@
 </head>
 <body>
 {{range .}}
-<p><a href="/portfolio/show?BinanceTicker={{.BinanceTicker}}">{{.BinanceTicker}}</a> - {{.Name}} - {{.Amount}} - <a href="/portfolio/update?BinanceTicker={{.BinanceTicker}}">update</a>  - <a href="/portfolio/delete/process?BinanceTicker={{.BinanceTicker}}">delete</a> </p>
+<p><a href="/portfolio/show?Ticker={{.Ticker}}">{{.Ticker}}</a> - {{.Name}} - {{.Amount}} - <a href="/portfolio/update?Ticker={{.Ticker}}">update</a>  - <a href="/portfolio/delete/process?Ticker={{.Ticker}}">delete</a> </p>
 {{end}}
 
 <p class="link"><a href="/portfolio/create">Add A Holding</a></p>
