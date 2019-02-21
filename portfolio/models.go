@@ -10,9 +10,11 @@ import (
 )
 
 type Holding struct {
-	Name   string
-	Ticker string
-	Amount float64
+	Name         string
+	Ticker       string
+	Amount       float64
+	CurrentPrice float64
+	Value        float64
 }
 
 func AllHoldings() ([]Holding, error) {
@@ -30,7 +32,7 @@ func OneHolding(r *http.Request) (Holding, error) {
 	if Ticker == "" {
 		return hldgs, errors.New("400. Bad Request.")
 	}
-	err := config.PortfoliosDB.Find(bson.M{"Ticker": Ticker}).One(&hldgs)
+	err := config.PortfoliosDB.Find(bson.M{"ticker": Ticker}).One(&hldgs)
 	if err != nil {
 		return hldgs, err
 	}
@@ -54,7 +56,8 @@ func PutHolding(r *http.Request) (Holding, error) {
 		return hldgs, errors.New("406. Not Acceptable. Price must be a number.")
 	}
 	hldgs.Amount = float64(f64)
-
+	hldgs.CurrentPrice = GetPrice(hldgs)
+	hldgs.Value = hldgs.CurrentPrice * hldgs.Amount
 	// insert values
 	err = config.PortfoliosDB.Insert(hldgs)
 	if err != nil {
@@ -80,9 +83,11 @@ func UpdateHolding(r *http.Request) (Holding, error) {
 		return hldgs, errors.New("406. Not Acceptable. Price must be a number.")
 	}
 	hldgs.Amount = float64(f64)
+	hldgs.CurrentPrice = GetPrice(hldgs)
+	hldgs.Value = hldgs.CurrentPrice * hldgs.Amount
 
 	// update values
-	err = config.PortfoliosDB.Update(bson.M{"Ticker": hldgs.Ticker}, &hldgs)
+	err = config.PortfoliosDB.Update(bson.M{"ticker": hldgs.Ticker}, &hldgs)
 	if err != nil {
 		return hldgs, err
 	}
@@ -95,7 +100,7 @@ func DeleteHolding(r *http.Request) error {
 		return errors.New("400. Bad Request.")
 	}
 
-	err := config.PortfoliosDB.Remove(bson.M{"Ticker": Ticker})
+	err := config.PortfoliosDB.Remove(bson.M{"ticker": Ticker})
 	if err != nil {
 		return errors.New("500. Internal Server Error")
 	}

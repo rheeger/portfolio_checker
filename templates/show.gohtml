@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>One Book</title>
+    <title>{{.Name}} Holdings</title>
     <style>
         html, body, p {
             padding: 0;
@@ -28,7 +28,7 @@
 </head>
 <body>
 
-<h2>{{.Isbn}} - {{.Title}} - {{.Author}} {{.Price}}</h2>
+<h2>{{.Ticker}}</a> - {{.Name}} - {{.Amount}} - {{.CurrentPrice}} - {{.Value}}</h2>
 <p class="link"><a href="/portfolio">All Holdings</a></p>
 
 </body>

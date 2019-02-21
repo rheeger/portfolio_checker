@@ -1,14 +1,12 @@
-package cmc
+package portfolio
 
 import (
 	"os"
 
-	"github.com/rheeger/portfolio_checker/portfolio"
-
 	cmc "github.com/miguelmota/go-coinmarketcap/pro/v1"
 )
 
-func GetPrice(hldg portfolio.Holding) float64 {
+func GetPrice(hldg Holding) float64 {
 	client := cmc.NewClient(&cmc.Config{
 		ProAPIKey: os.Getenv("CMC_PRO_API_KEY"),
 	})

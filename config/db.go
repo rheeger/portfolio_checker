@@ -19,7 +19,7 @@ var UsersDB *mgo.Collection
 func init() {
 	// get a mongo sessions
 	//s, err := mgo.Dial("mongodb://bond:moneypenny007@localhost/bookstore")
-	s, err := mgo.Dial("mongodb://localhost/portfolio_cheker")
+	s, err := mgo.Dial("mongodb://localhost/portfolio_checker")
 	if err != nil {
 		panic(err)
 	}
@@ -28,7 +28,7 @@ func init() {
 		panic(err)
 	}
 
-	DB = s.DB("bookstore")
+	DB = s.DB("portfolio_checker")
 	PortfoliosDB = DB.C("portfolios")
 	UsersDB = DB.C("users")
 
